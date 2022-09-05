@@ -12,26 +12,24 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Book.title, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var books: FetchedResults<Book>
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
+                ForEach(books) { book in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text("book at \(book.title!)")
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text("book at \(book.title!)")
                     }
                 }
                 .onDelete(perform: deleteItems)
             }
+            .navigationTitle("Book Nook")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
                 ToolbarItem {
                     Button(action: addItem) {
                         Label("Add Item", systemImage: "plus")
@@ -44,8 +42,9 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newBook = Book(context: viewContext)
+            newBook.author = "Emily"
+            newBook.title = "This is another book"
 
             do {
                 try viewContext.save()
@@ -60,7 +59,7 @@ struct ContentView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { books[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -73,13 +72,6 @@ struct ContentView: View {
         }
     }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
