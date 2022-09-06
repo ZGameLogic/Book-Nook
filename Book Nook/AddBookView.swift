@@ -9,10 +9,16 @@ import SwiftUI
 
 struct AddBookView: View {
     
+    enum FocusField: Hashable {
+        case field
+      }
+    
     @Environment(\.managedObjectContext) var viewContext
     @State private var inputTitle = ""
     @State private var inputAuthor = ""
     @Binding var isPresented: Bool
+    
+    @FocusState private var focusedField: FocusField?
     
     var body: some View {
         NavigationView {
@@ -21,6 +27,10 @@ struct AddBookView: View {
                     Text("Title:")
                     TextField("Enter Title", text: $inputTitle)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .focused($focusedField, equals: .field)
+                        .onAppear {
+                            self.focusedField = .field
+                        }
                 }
                 
                 HStack {
@@ -39,6 +49,7 @@ struct AddBookView: View {
                     saveBook(title: inputTitle, author: inputAuthor)
                     inputTitle = ""
                     inputAuthor = ""
+                    focusedField = .field
                 } label: {
                     Text("Save and add another")
                 }.padding()
