@@ -13,6 +13,7 @@
 		B5ADD66228C660B8002D6429 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5ADD66128C660B8002D6429 /* Preview Assets.xcassets */; };
 		B5ADD66428C660B8002D6429 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADD66328C660B8002D6429 /* Persistence.swift */; };
 		B5ADD66F28C665E0002D6429 /* Book_Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5ADD66D28C665E0002D6429 /* Book_Model.xcdatamodeld */; };
+		B5ADD69228C6BD14002D6429 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADD69128C6BD14002D6429 /* AddBookView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		B5ADD66128C660B8002D6429 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B5ADD66328C660B8002D6429 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B5ADD66E28C665E0002D6429 /* Book_Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Book_Model.xcdatamodel; sourceTree = "<group>"; };
+		B5ADD69128C6BD14002D6429 /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				B5ADD65A28C660B6002D6429 /* Book_NookApp.swift */,
 				B5ADD65C28C660B6002D6429 /* ContentView.swift */,
 				B5ADD66328C660B8002D6429 /* Persistence.swift */,
+				B5ADD69128C6BD14002D6429 /* AddBookView.swift */,
 				B5ADD66D28C665E0002D6429 /* Book_Model.xcdatamodeld */,
 				B5ADD65E28C660B8002D6429 /* Assets.xcassets */,
 				B5ADD66028C660B8002D6429 /* Preview Content */,
@@ -147,6 +150,7 @@
 				B5ADD65D28C660B6002D6429 /* ContentView.swift in Sources */,
 				B5ADD66F28C665E0002D6429 /* Book_Model.xcdatamodeld in Sources */,
 				B5ADD65B28C660B6002D6429 /* Book_NookApp.swift in Sources */,
+				B5ADD69228C6BD14002D6429 /* AddBookView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

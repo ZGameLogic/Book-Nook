@@ -12,31 +12,69 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Book.title, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Book.author, ascending: true), NSSortDescriptor(keyPath: \Book.title, ascending: true)],
         animation: .default)
     private var books: FetchedResults<Book>
+    
+    @State private var showAddBook = false
+    
+    @State private var presentAlert = false
+    
+    @State private var randomBookTitle = ""
+    @State private var randomBookAuthor = ""
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(books) { book in
                     NavigationLink {
-                        Text("book at \(book.title!)")
+                        Spacer()
+                        Text("\(book.title!)").font(.title)
+                        Text("\(book.author!)").font(.subheadline)
+                        Spacer()
+                        Text("Added \(formatDate(date: book.added ?? Date.now))")
+                        Spacer()
+                        Spacer()
                     } label: {
-                        Text("book at \(book.title!)")
+                        VStack {
+                            HStack {
+                                Spacer()
+                                Text(book.title!)
+                            }
+                            HStack {
+                                Spacer()
+                                Text(book.author!).fontWeight(.light).italic()
+                            }
+                        }
                     }
                 }
                 .onDelete(perform: deleteItems)
             }
             .navigationTitle("Book Nook")
             .toolbar {
+                ToolbarItem (placement: .navigationBarLeading) {
+                    Button("Random") {
+                        if(!books.isEmpty) {
+                            pickRandomBook()
+                            presentAlert = true
+                        }
+                    }
+                }
                 ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    Button(action: {showAddBook = true}) {
+                        Label("Add Book", systemImage: "plus")
                     }
                 }
             }
-            Text("Select an item")
+            .alert("You should read...",
+                        isPresented: $presentAlert,
+                        actions: {
+                        Button("Thanks", action: {})
+                    }, message: {
+                        Text("\(randomBookTitle) by \(randomBookAuthor)")
+                    })
+        }.sheet(isPresented: $showAddBook) {
+            AddBookView(isPresented: $showAddBook)
         }
     }
 
@@ -45,7 +83,7 @@ struct ContentView: View {
             let newBook = Book(context: viewContext)
             newBook.author = "Emily"
             newBook.title = "This is another book"
-
+            newBook.added = Date.now
             do {
                 try viewContext.save()
             } catch {
@@ -55,6 +93,18 @@ struct ContentView: View {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
+    }
+    
+    private func pickRandomBook() {
+        let book = books.randomElement()
+        randomBookTitle = book!.title!
+        randomBookAuthor = book!.author!
+    }
+    
+    private func formatDate(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        return dateFormatter.string(from: date)
     }
 
     private func deleteItems(offsets: IndexSet) {
@@ -74,6 +124,7 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
