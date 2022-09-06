@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B5ADD65728C660B6002D6429 /* Book Nook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Book Nook.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5ADD65728C660B6002D6429 /* ZBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5ADD65A28C660B6002D6429 /* Book_NookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book_NookApp.swift; sourceTree = "<group>"; };
 		B5ADD65C28C660B6002D6429 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B5ADD65E28C660B8002D6429 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,7 +49,7 @@
 		B5ADD65828C660B6002D6429 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B5ADD65728C660B6002D6429 /* Book Nook.app */,
+				B5ADD65728C660B6002D6429 /* ZBook.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,9 +79,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B5ADD65628C660B6002D6429 /* Book Nook */ = {
+		B5ADD65628C660B6002D6429 /* ZBook */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B5ADD66A28C660B8002D6429 /* Build configuration list for PBXNativeTarget "Book Nook" */;
+			buildConfigurationList = B5ADD66A28C660B8002D6429 /* Build configuration list for PBXNativeTarget "ZBook" */;
 			buildPhases = (
 				B5ADD65328C660B6002D6429 /* Sources */,
 				B5ADD65428C660B6002D6429 /* Frameworks */,
@@ -91,9 +91,9 @@
 			);
 			dependencies = (
 			);
-			name = "Book Nook";
+			name = ZBook;
 			productName = "Book Nook";
-			productReference = B5ADD65728C660B6002D6429 /* Book Nook.app */;
+			productReference = B5ADD65728C660B6002D6429 /* ZBook.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -111,7 +111,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B5ADD65228C660B6002D6429 /* Build configuration list for PBXProject "Book Nook" */;
+			buildConfigurationList = B5ADD65228C660B6002D6429 /* Build configuration list for PBXProject "ZBook" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -124,7 +124,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B5ADD65628C660B6002D6429 /* Book Nook */,
+				B5ADD65628C660B6002D6429 /* ZBook */,
 			);
 		};
 /* End PBXProject section */
@@ -286,15 +286,15 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "zgamelogic.Book-Nook";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = zgamelogic.ZBook;
+				PRODUCT_NAME = ZBook;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -316,15 +316,15 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "zgamelogic.Book-Nook";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = zgamelogic.ZBook;
+				PRODUCT_NAME = ZBook;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -334,7 +334,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B5ADD65228C660B6002D6429 /* Build configuration list for PBXProject "Book Nook" */ = {
+		B5ADD65228C660B6002D6429 /* Build configuration list for PBXProject "ZBook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5ADD66828C660B8002D6429 /* Debug */,
@@ -343,7 +343,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B5ADD66A28C660B8002D6429 /* Build configuration list for PBXNativeTarget "Book Nook" */ = {
+		B5ADD66A28C660B8002D6429 /* Build configuration list for PBXNativeTarget "ZBook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5ADD66B28C660B8002D6429 /* Debug */,

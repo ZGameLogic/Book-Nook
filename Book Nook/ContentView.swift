@@ -50,7 +50,7 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
-            .navigationTitle("Book Nook")
+            .navigationTitle("Books")
             .toolbar {
                 ToolbarItem (placement: .navigationBarLeading) {
                     Button("Random") {
@@ -75,23 +75,6 @@ struct ContentView: View {
                     })
         }.sheet(isPresented: $showAddBook) {
             AddBookView(isPresented: $showAddBook)
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newBook = Book(context: viewContext)
-            newBook.author = "Emily"
-            newBook.title = "This is another book"
-            newBook.added = Date.now
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
         }
     }
     
