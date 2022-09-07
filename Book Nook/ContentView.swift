@@ -19,6 +19,7 @@ struct ContentView: View {
     @State private var showAddBook = false
     
     @State private var presentAlert = false
+    @State private var presentEmptyBook = false
     
     @State private var randomBookTitle = ""
     @State private var randomBookAuthor = ""
@@ -57,6 +58,8 @@ struct ContentView: View {
                         if(!books.isEmpty) {
                             pickRandomBook()
                             presentAlert = true
+                        } else {
+                            presentEmptyBook = true
                         }
                     }
                 }
@@ -72,6 +75,13 @@ struct ContentView: View {
                         Button("Thanks", action: {})
                     }, message: {
                         Text("\(randomBookTitle) by \(randomBookAuthor)")
+                    })
+            .alert("You have no books on your shelf!",
+                        isPresented: $presentEmptyBook,
+                        actions: {
+                        Button("Thanks", action: {})
+                    }, message: {
+                        Text("Add a book by using the + icon in the top right")
                     })
         }.sheet(isPresented: $showAddBook) {
             AddBookView(isPresented: $showAddBook)
