@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5370ED528C8D0E7001566FF /* ZBook-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5370ED428C8D0E7001566FF /* ZBook-Info.plist */; };
 		B5ADD65B28C660B6002D6429 /* Book_NookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADD65A28C660B6002D6429 /* Book_NookApp.swift */; };
 		B5ADD65D28C660B6002D6429 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADD65C28C660B6002D6429 /* ContentView.swift */; };
 		B5ADD65F28C660B8002D6429 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5ADD65E28C660B8002D6429 /* Assets.xcassets */; };
@@ -17,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B5370ED128C8C925001566FF /* ZBook-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ZBook-Info.plist"; sourceTree = "<group>"; };
+		B5370ED428C8D0E7001566FF /* ZBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ZBook-Info.plist"; sourceTree = "<group>"; };
 		B5ADD65728C660B6002D6429 /* ZBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5ADD65A28C660B6002D6429 /* Book_NookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book_NookApp.swift; sourceTree = "<group>"; };
 		B5ADD65C28C660B6002D6429 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,7 +43,7 @@
 		B5ADD64E28C660B6002D6429 = {
 			isa = PBXGroup;
 			children = (
-				B5370ED128C8C925001566FF /* ZBook-Info.plist */,
+				B5370ED428C8D0E7001566FF /* ZBook-Info.plist */,
 				B5ADD65928C660B6002D6429 /* Book Nook */,
 				B5ADD65828C660B6002D6429 /* Products */,
 			);
@@ -138,6 +139,7 @@
 			files = (
 				B5ADD66228C660B8002D6429 /* Preview Assets.xcassets in Resources */,
 				B5ADD65F28C660B8002D6429 /* Assets.xcassets in Resources */,
+				B5370ED528C8D0E7001566FF /* ZBook-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,7 +281,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Book Nook/Preview Content\"";
 				DEVELOPMENT_TEAM = 6M38R97L4D;
 				ENABLE_PREVIEWS = YES;
@@ -310,7 +312,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Book Nook/Preview Content\"";
 				DEVELOPMENT_TEAM = 6M38R97L4D;
 				ENABLE_PREVIEWS = YES;
