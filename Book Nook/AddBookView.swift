@@ -16,6 +16,11 @@ struct AddBookView: View {
     @Environment(\.managedObjectContext) var viewContext
     @State private var inputTitle = ""
     @State private var inputAuthor = ""
+    @State private var addAnother = false
+    
+    @State private var errorMessage = ""
+    @State private var showError = false
+    
     @Binding var isPresented: Bool
     
     @FocusState private var focusedField: FocusField?
@@ -38,32 +43,55 @@ struct AddBookView: View {
                     TextField("Enter Author", text: $inputAuthor)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }.frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                Toggle(isOn: $addAnother) {
+                    Text("Add another:")
+                }
                 Spacer()
-                Button {
-                    saveBook(title: inputTitle, author: inputAuthor)
-                    isPresented = false
-                } label: {
-                    Text("Save and close")
-                }.padding()
-                Button {
-                    saveBook(title: inputTitle, author: inputAuthor)
-                    inputTitle = ""
-                    inputAuthor = ""
-                    focusedField = .field
-                } label: {
-                    Text("Save and add another")
-                }.padding()
-                Button {
-                    inputTitle = ""
-                    inputAuthor = ""
-                    isPresented = false
-                } label: {
-                    Text("Cancel").foregroundColor(.red)
-                }.padding()
-
             }
             .padding()
             .navigationBarTitle("Add Book")
+            .toolbar {
+                ToolbarItem (placement: .navigationBarLeading) {
+                    Button {
+                        inputTitle = ""
+                        inputAuthor = ""
+                        isPresented = false
+                    } label: {
+                        Text("Cancel").foregroundColor(.red)
+                    }
+                }
+                ToolbarItem {
+                    Button {
+                        if(inputTitle.isEmpty || inputAuthor.isEmpty){
+                            errorMessage = ""
+                            if(inputTitle.isEmpty){
+                                errorMessage = "Please input a title\n"
+                            }
+                            if(inputAuthor.isEmpty){
+                                errorMessage = errorMessage + "Please input an author"
+                            }
+                            showError = true
+                        } else {
+                            saveBook(title: inputTitle, author: inputAuthor)
+                            if(addAnother){
+                                inputTitle = ""
+                                inputAuthor = ""
+                                focusedField = .field
+                            } else {
+                                isPresented = false
+                            }
+                        }
+                    } label: {
+                        Text("Save")
+                    }
+                }
+            }.alert("Missing information",
+                     isPresented: $showError,
+                     actions: {
+                     Button("Okay", action: {})
+                 }, message: {
+                     Text("\(errorMessage)")
+                 })
         }
     }
     
