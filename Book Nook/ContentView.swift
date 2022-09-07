@@ -17,6 +17,7 @@ struct ContentView: View {
     private var books: FetchedResults<Book>
     
     @State private var showAddBook = false
+    @State private var showViewBook = false
     
     @State private var presentAlert = false
     @State private var presentEmptyBook = false
@@ -29,13 +30,7 @@ struct ContentView: View {
             List {
                 ForEach(books) { book in
                     NavigationLink {
-                        Spacer()
-                        Text("\(book.title!)").font(.title)
-                        Text("\(book.author!)").font(.subheadline)
-                        Spacer()
-                        Text("Added \(formatDate(date: book.added ?? Date.now))")
-                        Spacer()
-                        Spacer()
+                        ShowBookView(book: book, isPresented: $showViewBook)
                     } label: {
                         VStack {
                             HStack {
@@ -92,12 +87,6 @@ struct ContentView: View {
         let book = books.randomElement()
         randomBookTitle = book!.title!
         randomBookAuthor = book!.author!
-    }
-    
-    private func formatDate(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy"
-        return dateFormatter.string(from: date)
     }
 
     private func deleteItems(offsets: IndexSet) {

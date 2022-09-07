@@ -3,9 +3,10 @@
     <entity name="Book" representedClassName="Book" syncable="YES" codeGenerationType="class">
         <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="timesRead" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Book" positionX="-54" positionY="-9" width="128" height="74"/>
+        <element name="Book" positionX="-54" positionY="-9" width="128" height="89"/>
     </elements>
 </model>

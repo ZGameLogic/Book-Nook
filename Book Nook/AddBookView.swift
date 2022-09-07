@@ -103,6 +103,7 @@ struct AddBookView: View {
             newBook.title = newTitle
             newBook.author = newAuthor
             newBook.added = Date.now
+            newBook.timesRead = 0
             do {
                 try viewContext.save()
             } catch {

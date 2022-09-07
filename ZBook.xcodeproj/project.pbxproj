@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B5370ED528C8D0E7001566FF /* ZBook-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5370ED428C8D0E7001566FF /* ZBook-Info.plist */; };
+		B5370ED728C8EBBA001566FF /* ShowBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370ED628C8EBBA001566FF /* ShowBookView.swift */; };
 		B5ADD65B28C660B6002D6429 /* Book_NookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADD65A28C660B6002D6429 /* Book_NookApp.swift */; };
 		B5ADD65D28C660B6002D6429 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADD65C28C660B6002D6429 /* ContentView.swift */; };
 		B5ADD65F28C660B8002D6429 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5ADD65E28C660B8002D6429 /* Assets.xcassets */; };
@@ -19,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		B5370ED428C8D0E7001566FF /* ZBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ZBook-Info.plist"; sourceTree = "<group>"; };
+		B5370ED628C8EBBA001566FF /* ShowBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBookView.swift; sourceTree = "<group>"; };
 		B5ADD65728C660B6002D6429 /* ZBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5ADD65A28C660B6002D6429 /* Book_NookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book_NookApp.swift; sourceTree = "<group>"; };
 		B5ADD65C28C660B6002D6429 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 				B5ADD65A28C660B6002D6429 /* Book_NookApp.swift */,
 				B5ADD65C28C660B6002D6429 /* ContentView.swift */,
 				B5ADD66328C660B8002D6429 /* Persistence.swift */,
+				B5370ED628C8EBBA001566FF /* ShowBookView.swift */,
 				B5ADD69128C6BD14002D6429 /* AddBookView.swift */,
 				B5ADD66D28C665E0002D6429 /* Book_Model.xcdatamodeld */,
 				B5ADD65E28C660B8002D6429 /* Assets.xcassets */,
@@ -139,7 +141,6 @@
 			files = (
 				B5ADD66228C660B8002D6429 /* Preview Assets.xcassets in Resources */,
 				B5ADD65F28C660B8002D6429 /* Assets.xcassets in Resources */,
-				B5370ED528C8D0E7001566FF /* ZBook-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +153,7 @@
 			files = (
 				B5ADD66428C660B8002D6429 /* Persistence.swift in Sources */,
 				B5ADD65D28C660B6002D6429 /* ContentView.swift in Sources */,
+				B5370ED728C8EBBA001566FF /* ShowBookView.swift in Sources */,
 				B5ADD66F28C665E0002D6429 /* Book_Model.xcdatamodeld in Sources */,
 				B5ADD65B28C660B6002D6429 /* Book_NookApp.swift in Sources */,
 				B5ADD69228C6BD14002D6429 /* AddBookView.swift in Sources */,
