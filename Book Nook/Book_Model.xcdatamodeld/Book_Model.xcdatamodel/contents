@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Book" representedClassName="Book" syncable="YES" codeGenerationType="class">
+    <entity name="Book" representedClassName="Book" syncable="YES">
         <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="author" optional="YES" attributeType="String"/>
-        <attribute name="timesRead" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="bookShelf" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BookShelf" inverseName="books" inverseEntity="BookShelf"/>
+    </entity>
+    <entity name="BookShelf" representedClassName="BookShelf" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="bookShelf" inverseEntity="Book"/>
     </entity>
     <elements>
         <element name="Book" positionX="-54" positionY="-9" width="128" height="89"/>
+        <element name="BookShelf" positionX="-54" positionY="18" width="128" height="59"/>
     </elements>
 </model>

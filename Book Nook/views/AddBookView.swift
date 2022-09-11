@@ -7,25 +7,37 @@
 
 import SwiftUI
 
-struct AddBookView: View {
+public struct AddBookView: View {
     
     enum FocusField: Hashable {
         case field
       }
     
     @Environment(\.managedObjectContext) var viewContext
-    @State private var inputTitle = ""
-    @State private var inputAuthor = ""
-    @State private var addAnother = false
+    @State var inputTitle = ""
+    @State var inputAuthor = ""
+    @State var addAnother = false
     
-    @State private var errorMessage = ""
-    @State private var showError = false
+    @State var errorMessage = ""
+    @State var showError = false
+    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Book.author, ascending: true), NSSortDescriptor(keyPath: \Book.title, ascending: true)],
+        animation: .default)
+    private var books: FetchedResults<Book>
+    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \BookShelf.name, ascending: true)],
+        animation: .default)
+    private var bookShelves: FetchedResults<BookShelf>
+    
+    @State var pickedShelf: BookShelf
     
     @Binding var isPresented: Bool
     
-    @FocusState private var focusedField: FocusField?
+    @FocusState var focusedField: FocusField?
     
-    var body: some View {
+    public var body: some View {
         NavigationView {
             VStack(spacing: 12) {
                 HStack {
@@ -43,6 +55,23 @@ struct AddBookView: View {
                     TextField("Enter Author", text: $inputAuthor)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }.frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                HStack {
+                    Text("Book shelf: ")
+                    if(bookShelves.count < 4){
+                        Picker("Book Shelf", selection: $pickedShelf) {
+                               ForEach(bookShelves) { shelf in
+                                   Text(shelf.name!).tag(shelf)
+                               }
+                        }.pickerStyle(.segmented)
+                    } else {
+                        Picker("Book Shelf", selection: $pickedShelf) {
+                               ForEach(bookShelves) { shelf in
+                                   Text(shelf.name!).tag(shelf)
+                               }
+                        }.pickerStyle(.menu)
+                    }
+                    Spacer()
+                }
                 Toggle(isOn: $addAnother) {
                     Text("Add another:")
                 }
@@ -55,6 +84,9 @@ struct AddBookView: View {
                     Button {
                         inputTitle = ""
                         inputAuthor = ""
+                        if(pickedShelf.name == "Unshelved" && pickedShelf.bookArray.isEmpty){
+                            
+                        }
                         isPresented = false
                     } label: {
                         Text("Cancel").foregroundColor(.red)
@@ -72,20 +104,25 @@ struct AddBookView: View {
                             }
                             showError = true
                         } else {
-                            saveBook(title: inputTitle, author: inputAuthor)
-                            if(addAnother){
-                                inputTitle = ""
-                                inputAuthor = ""
-                                focusedField = .field
+                            if(findBook(title: inputTitle, author: inputAuthor)){
+                                errorMessage = "Book already exists"
+                                showError = true
                             } else {
-                                isPresented = false
+                                saveBook(title: inputTitle, author: inputAuthor, bookShelf: pickedShelf)
+                                if(addAnother){
+                                    inputTitle = ""
+                                    inputAuthor = ""
+                                    focusedField = .field
+                                } else {
+                                    isPresented = false
+                                }
                             }
                         }
                     } label: {
                         Text("Save")
                     }
                 }
-            }.alert("Missing information",
+            }.alert("Unable to add book",
                      isPresented: $showError,
                      actions: {
                      Button("Okay", action: {})
@@ -95,7 +132,7 @@ struct AddBookView: View {
         }
     }
     
-    func saveBook(title: String, author: String){
+    func saveBook(title: String, author: String, bookShelf: BookShelf){
         let newTitle = title.trimmingCharacters(in: .whitespaces)
         let newAuthor = author.trimmingCharacters(in: .whitespaces)
         if !newTitle.isEmpty && !newAuthor.isEmpty {
@@ -103,7 +140,8 @@ struct AddBookView: View {
             newBook.title = newTitle
             newBook.author = newAuthor
             newBook.added = Date.now
-            newBook.timesRead = 0
+            let savedBookShelf = bookShelf
+            newBook.bookShelf = savedBookShelf
             do {
                 try viewContext.save()
             } catch {
@@ -112,13 +150,14 @@ struct AddBookView: View {
             }
         }
     }
-}
-
-struct AddBookView_Previews: PreviewProvider {
     
-    @State static var isPresented = true
-    
-    static var previews: some View {
-        AddBookView(isPresented: $isPresented)
+    func findBook(title: String, author: String) -> Bool {
+        var found = false
+        for book in books {
+            if(book.author == author && book.title == title) {
+               found = true
+            }
+        }
+        return found
     }
 }

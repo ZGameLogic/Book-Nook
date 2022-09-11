@@ -18,6 +18,10 @@ struct PersistenceController {
             newBook.author = "Ben"
             newBook.title = "Book title"
         }
+        for _ in 0..<3 {
+            let newShelf = BookShelf(context: viewContext)
+            newShelf.name = "Shoo wee a named shelf"
+        }
         do {
             try viewContext.save()
         } catch {
