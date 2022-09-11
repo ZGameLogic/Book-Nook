@@ -27,7 +27,11 @@ extension BookShelf {
         let set = books as? Set<Book> ?? []
         
         return set.sorted {
-            $0.unwrappedAuthor < $1.unwrappedAuthor
+            if($0.unwrappedAuthor == $1.unwrappedAuthor){
+                return $0.unwrappedTitle < $1.unwrappedTitle
+            } else {
+                return $0.unwrappedAuthor < $1.unwrappedAuthor
+            }
         }
     }
 }

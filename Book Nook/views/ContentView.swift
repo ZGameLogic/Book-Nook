@@ -71,15 +71,6 @@ struct ContentView: View {
                                     Text(bookShelf.name!)
                                     Spacer()
                                     Button(action: {
-                                        shelfToEdit = bookShelf
-                                        while(shelfToEdit != bookShelf){
-                                            print("no")
-                                        }
-                                        presentEditShelf = true
-                                    }){
-                                        Label("", systemImage: "pencil")
-                                    }
-                                    Button(action: {
                                         pickRandom(shelf: bookShelf)
                                     }){
                                         Label("", systemImage: "arrow.triangle.2.circlepath")
@@ -91,9 +82,7 @@ struct ContentView: View {
                                         Label("", systemImage: "trash").foregroundColor(.red)
                                     }
                                 }
-                            }).sheet(isPresented: $presentEditShelf) {
-                                EditShelfView(shelf: bookShelf, isPresented: $presentEditShelf)
-                            }
+                            })
                         }
                     }
                 }
