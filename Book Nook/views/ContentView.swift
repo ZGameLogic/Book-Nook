@@ -37,6 +37,8 @@ struct ContentView: View {
     @State private var randomBookTitle = ""
     @State private var randomBookAuthor = ""
     
+    @State private var bookSearch = ""
+    
     @State private var tabOn: Int = 1
 
     var body: some View {
@@ -145,24 +147,26 @@ struct ContentView: View {
                             Text("Add a shelf for your books to go on the shelves screen")
                         } else {
                             ForEach(books) { book in
-                                NavigationLink {
-                                    ShowBookView(book: book, isPresented: $showViewBook, selectedBookShelf: book.bookShelf!)
-                                } label: {
-                                    VStack {
-                                        HStack {
-                                            Spacer()
-                                            Text(book.title!).foregroundColor(book.bookShelf?.color)
-                                        }
-                                        HStack {
-                                            Spacer()
-                                            Text(book.author!).fontWeight(.light).italic()
+                                if(bookSearch == "" || (book.title!.lowercased().contains(bookSearch.lowercased()) || book.author!.lowercased().contains(bookSearch.lowercased()))){
+                                    NavigationLink {
+                                        ShowBookView(book: book, isPresented: $showViewBook, selectedBookShelf: book.bookShelf!)
+                                    } label: {
+                                        VStack {
+                                            HStack {
+                                                Spacer()
+                                                Text(book.title!).foregroundColor(book.bookShelf?.color)
+                                            }
+                                            HStack {
+                                                Spacer()
+                                                Text(book.author!).fontWeight(.light).italic()
+                                            }
                                         }
                                     }
                                 }
                             }
                             .onDelete(perform: deleteItems)
                         }
-                    }
+                    }.searchable(text: $bookSearch)
                     .navigationTitle("Books")
                     .toolbar {
                         ToolbarItem {
