@@ -17,7 +17,9 @@ struct ContentView: View {
     private var books: FetchedResults<Book>
     
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \BookShelf.name, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(
+            keyPath: \BookShelf.priority,
+            ascending: true)],
         animation: .default)
     private var bookShelves: FetchedResults<BookShelf>
     
@@ -27,9 +29,7 @@ struct ContentView: View {
     
     @State private var presentAlert = false
     @State private var presentEmptyBook = false
-    @State private var presentDeleteShelf = false
     @State private var canAddBook = false
-    @State private var shelfToDelete : BookShelf?
     
     @State private var presentEditShelf = false
     @State private var shelfToEdit : BookShelf?
@@ -49,13 +49,13 @@ struct ContentView: View {
                         ForEach(bookShelves) { bookShelf in
                             Section(content: {
                                 ForEach(bookShelf.bookArray){ book in
-                                    NavigationLink{
+                                    NavigationLink {
                                         ShowBookView(book: book, isPresented: $showViewBook, selectedBookShelf: book.bookShelf!)
                                     } label: {
                                         VStack {
                                             HStack{
                                                 Spacer()
-                                                Text(book.title!)
+                                                Text(book.title!).foregroundColor(book.bookShelf?.color)
                                             }
                                             HStack{
                                                 Spacer()
@@ -75,12 +75,6 @@ struct ContentView: View {
                                     }){
                                         Label("", systemImage: "arrow.triangle.2.circlepath")
                                     }
-                                    Button(action: {
-                                        shelfToDelete = bookShelf
-                                        presentDeleteShelf = true
-                                    }){
-                                        Label("", systemImage: "trash").foregroundColor(.red)
-                                    }
                                 }
                             })
                         }
@@ -90,7 +84,7 @@ struct ContentView: View {
                     ToolbarItem {
                         Button(action: {showAddShelf = true}) {
                             Label("Add Shelf", systemImage: "books.vertical")
-                        }
+                        } 
                     }
                     ToolbarItem(placement: .primaryAction) {
                         Button(action: {showAddBook = true}) {
@@ -112,14 +106,6 @@ struct ContentView: View {
                     }, message: {
                         Text("Add a book by using the book icon in the top right")
                     })
-                .alert(isPresented: $presentDeleteShelf) {
-                    Alert(title: Text("Are you sure you want to delete this shelf?"),
-                        message: Text("This will also delete all the books in this shelf"),
-                        primaryButton: .destructive(Text("Delete")) {
-                        deleteShelf(shelf: shelfToDelete!)
-                        },
-                        secondaryButton: .cancel())
-                }
             }.sheet(isPresented: $showAddShelf) {
                 AddShelfView(isPresented: $showAddShelf)
             }
@@ -130,6 +116,19 @@ struct ContentView: View {
                 Label("Shelves", systemImage: "books.vertical")
             }).tag(1)
                 .onAppear(){
+                    var index = 0;
+                    for bookShelf in bookShelves {
+                        if(bookShelf.priority == -1){
+                            bookShelf.priority = Int64(index)
+                        }
+                        index += 1
+                    }
+                    do {
+                        try viewContext.save()
+                    } catch {
+                        let nsError = error as NSError
+                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                    }
                     canAddBook = !bookShelves.isEmpty
                     for book in books {
                         if(book.bookShelf == nil){
@@ -152,7 +151,7 @@ struct ContentView: View {
                                     VStack {
                                         HStack {
                                             Spacer()
-                                            Text(book.title!)
+                                            Text(book.title!).foregroundColor(book.bookShelf?.color)
                                         }
                                         HStack {
                                             Spacer()
@@ -175,6 +174,10 @@ struct ContentView: View {
             }.tabItem {
                 Label("Books", systemImage: "text.book.closed")
             }.tag(2)
+            
+            BookShelfListView(canAddBook: $canAddBook).tabItem {
+                Label("Settings", systemImage: "gear")
+            }.tag(3)
         }
     }
     
@@ -197,33 +200,6 @@ struct ContentView: View {
             }
             index += 1
         }
-    }
-    
-    private func deleteShelf(shelf: BookShelf) {
-        for book in shelf.bookArray {
-            deleteBook(book: book)
-        }
-        
-        var index = 0
-        
-        for currentShelf in bookShelves {
-            if(currentShelf.name == shelf.name){
-                break;
-            }
-            index += 1
-        }
-        
-        withAnimation {
-            [index].map { bookShelves[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-        canAddBook = !bookShelves.isEmpty
     }
 
     private func deleteItems(offsets: IndexSet) {

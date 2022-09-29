@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 
 extension BookShelf {
@@ -15,12 +16,20 @@ extension BookShelf {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<BookShelf> {
         return NSFetchRequest<BookShelf>(entityName: "BookShelf")
     }
-
+    
     @NSManaged public var name: String?
+    @NSManaged public var priority: Int64
+    @NSManaged public var colorRed: Double
+    @NSManaged public var colorGreen: Double
+    @NSManaged public var colorBlue: Double
     @NSManaged public var books: NSSet?
 
     public var unwrappedName : String {
         name ?? "Unknown name"
+    }
+    
+    public var color: Color {
+        Color(red: colorRed, green: colorGreen, blue: colorBlue)
     }
     
     public var bookArray: [Book] {

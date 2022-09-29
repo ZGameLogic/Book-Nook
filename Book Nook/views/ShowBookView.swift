@@ -29,7 +29,7 @@ struct ShowBookView: View {
         Spacer()
         HStack {
             Text("Book shelf: ")
-            Picker("Book Shelf", selection: $selectedBookShelf) {
+            Picker("", selection: $selectedBookShelf) {
                    ForEach(bookShelves) { shelf in
                        Text(shelf.name ?? "Deleted Shelf").tag(shelf)
                    }

@@ -13,6 +13,7 @@
 		B53CC73328CCE71200F3CBE5 /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53CC72F28CCE71200F3CBE5 /* Book+CoreDataProperties.swift */; };
 		B53CC73428CCE71200F3CBE5 /* BookShelf+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53CC73028CCE71200F3CBE5 /* BookShelf+CoreDataClass.swift */; };
 		B53CC73528CCE71200F3CBE5 /* BookShelf+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53CC73128CCE71200F3CBE5 /* BookShelf+CoreDataProperties.swift */; };
+		B551212128E5D0E90022CC6C /* BookShelfListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B551212028E5D0E90022CC6C /* BookShelfListView.swift */; };
 		B56CBF9728CE1C5D00F24D86 /* EditShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CBF9628CE1C5D00F24D86 /* EditShelfView.swift */; };
 		B5ADD65B28C660B6002D6429 /* Book_NookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADD65A28C660B6002D6429 /* Book_NookApp.swift */; };
 		B5ADD65D28C660B6002D6429 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADD65C28C660B6002D6429 /* ContentView.swift */; };
@@ -31,6 +32,7 @@
 		B53CC72F28CCE71200F3CBE5 /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Book+CoreDataProperties.swift"; path = "Book Nook/data/Book+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		B53CC73028CCE71200F3CBE5 /* BookShelf+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookShelf+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B53CC73128CCE71200F3CBE5 /* BookShelf+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookShelf+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B551212028E5D0E90022CC6C /* BookShelfListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookShelfListView.swift; sourceTree = "<group>"; };
 		B56CBF9628CE1C5D00F24D86 /* EditShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShelfView.swift; sourceTree = "<group>"; };
 		B5ADD65728C660B6002D6429 /* ZBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5ADD65A28C660B6002D6429 /* Book_NookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book_NookApp.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				B5ADD69128C6BD14002D6429 /* AddBookView.swift */,
 				B53CC72A28CCD6CB00F3CBE5 /* AddShelfView.swift */,
 				B56CBF9628CE1C5D00F24D86 /* EditShelfView.swift */,
+				B551212028E5D0E90022CC6C /* BookShelfListView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				B5ADD66428C660B8002D6429 /* Persistence.swift in Sources */,
 				B5ADD65D28C660B6002D6429 /* ContentView.swift in Sources */,
 				B53CC72B28CCD6CB00F3CBE5 /* AddShelfView.swift in Sources */,
+				B551212128E5D0E90022CC6C /* BookShelfListView.swift in Sources */,
 				B53CC73428CCE71200F3CBE5 /* BookShelf+CoreDataClass.swift in Sources */,
 				B5370ED728C8EBBA001566FF /* ShowBookView.swift in Sources */,
 				B5ADD66F28C665E0002D6429 /* Book_Model.xcdatamodeld in Sources */,
@@ -323,7 +327,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Book Nook/Preview Content\"";
 				DEVELOPMENT_TEAM = 6M38R97L4D;
 				ENABLE_PREVIEWS = YES;
@@ -354,7 +358,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Book Nook/Preview Content\"";
 				DEVELOPMENT_TEAM = 6M38R97L4D;
 				ENABLE_PREVIEWS = YES;

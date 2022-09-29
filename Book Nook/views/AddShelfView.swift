@@ -15,6 +15,8 @@ struct AddShelfView: View {
     @State private var errorMessage = ""
     @State private var showError = false
     
+    @State private var color = Color.blue
+    
     @Binding var isPresented: Bool
     
     var body: some View {
@@ -24,6 +26,7 @@ struct AddShelfView: View {
                     Text("Name:")
                     TextField("Enter Name", text: $inputName).textFieldStyle(.roundedBorder)
                 }.padding()
+                ColorPicker("Bookshelf Color", selection: $color).padding()
                 Spacer()
             }
             .navigationBarTitle("Add Shelf")
@@ -64,6 +67,9 @@ struct AddShelfView: View {
         if(!name.isEmpty){
             let newShelf = BookShelf(context: viewContext)
             newShelf.name = newName
+            newShelf.colorRed = Double((color.cgColor?.components![0])!)
+            newShelf.colorGreen = Double((color.cgColor?.components![1])!)
+            newShelf.colorBlue = Double((color.cgColor?.components![2])!)
             do {
                 try viewContext.save()
             } catch {

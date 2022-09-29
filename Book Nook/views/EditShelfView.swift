@@ -9,48 +9,27 @@ import SwiftUI
 
 struct EditShelfView: View {
     @Environment(\.managedObjectContext) var viewContext
+    
+    
     @State var inputName = ""
     
-    @State var shelf : BookShelf
+    @State var shelf : BookShelf?
+    @Binding var isPresented: Bool
     
     @State private var errorMessage = ""
     @State private var showError = false
     
-    @Binding var isPresented: Bool
+    @State private var color = Color.blue
     
     var body: some View {
-        NavigationView {
             VStack(spacing: 12){
                 HStack {
                     Text("Name:")
                     TextField("Enter Name", text: $inputName).textFieldStyle(.roundedBorder)
                 }.padding()
+                ColorPicker("Bookshelf Color", selection: $color).padding()
                 Spacer()
-            }
-            .navigationBarTitle("Edit Shelf")
-            .toolbar {
-                ToolbarItem (placement: .navigationBarLeading) {
-                    Button {
-                        isPresented = false
-                    } label: {
-                        Text("Cancel").foregroundColor(.red)
-                    }
-                }
-                ToolbarItem {
-                    Button {
-                        if(!inputName.isEmpty){
-                            saveShelf(name: inputName)
-                            isPresented = false
-                        } else {
-                            errorMessage = "Please input a name"
-                            showError = true
-                        }
-                    } label: {
-                        Text("Save")
-                    }
-                }
-            }
-        }.alert("Missing information",
+            }.alert("Missing information",
                 isPresented: $showError,
                 actions: {
                 Button("Okay", action: {})
@@ -58,21 +37,26 @@ struct EditShelfView: View {
                 Text("\(errorMessage)")
             })
         .onAppear(){
-            inputName = shelf.unwrappedName
+            inputName = shelf!.unwrappedName
+            color = shelf!.color
+        }.onDisappear(){
+            saveShelf()
         }
     }
     
-    func saveShelf(name: String){
-        let newName = name.trimmingCharacters(in: .whitespaces)
-        
-        if(!name.isEmpty){
-            shelf.name = newName
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError) on add, \(nsError.userInfo)")
-            }
+    func saveShelf(){
+        let newName = inputName.trimmingCharacters(in: .whitespaces)
+        if(!newName.isEmpty){
+            shelf!.name = newName
+        }
+        shelf!.colorRed = Double((color.cgColor?.components![0])!)
+        shelf!.colorGreen = Double((color.cgColor?.components![1])!)
+        shelf!.colorBlue = Double((color.cgColor?.components![2])!)
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError) on add, \(nsError.userInfo)")
         }
     }
 }
