@@ -27,7 +27,6 @@ struct BookShelfListView: View {
     @State private var presentEditShelf = false
     
     @State private var shelfToDelete : BookShelf?
-    @State private var shelfToEdit: BookShelf?
     
     @Binding var canAddBook : Bool
     
@@ -39,16 +38,14 @@ struct BookShelfListView: View {
                         HStack{
                             Text(bookShelf.name!).foregroundColor(bookShelf.color)
                             Spacer()
-                            Button(action: {
-                                shelfToDelete = bookShelf
-                                presentDeleteShelf = true
-                            }){
-                                Label("", systemImage: "trash").foregroundColor(.red)
-                            }
                             Label("", systemImage: "line.3.horizontal")
                         }
                     }
                 }.onMove(perform: move)
+                 .onDelete(perform: { indexes in
+                     shelfToDelete = bookShelves[indexes.first!]
+                     presentDeleteShelf = true
+                })
             }.navigationTitle("Bookshelf Settings")
             .alert(isPresented: $presentDeleteShelf) {
                 Alert(title: Text("Are you sure you want to delete this shelf?"),
@@ -113,7 +110,6 @@ struct BookShelfListView: View {
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { books[$0] }.forEach(viewContext.delete)
-
             do {
                 try viewContext.save()
             } catch {

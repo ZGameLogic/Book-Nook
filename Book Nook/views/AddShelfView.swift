@@ -67,9 +67,9 @@ struct AddShelfView: View {
         if(!name.isEmpty){
             let newShelf = BookShelf(context: viewContext)
             newShelf.name = newName
-            newShelf.colorRed = Double((color.cgColor?.components![0])!)
-            newShelf.colorGreen = Double((color.cgColor?.components![1])!)
-            newShelf.colorBlue = Double((color.cgColor?.components![2])!)
+            newShelf.colorRed = Double((color.cgColor?.components![0]) ?? 0.0)
+            newShelf.colorGreen = Double((color.cgColor?.components![1]) ?? 0.0)
+            newShelf.colorBlue = Double((color.cgColor?.components![2]) ?? 1.0)
             do {
                 try viewContext.save()
             } catch {
