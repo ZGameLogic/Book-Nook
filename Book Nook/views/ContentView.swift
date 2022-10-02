@@ -148,20 +148,7 @@ struct ContentView: View {
                         } else {
                             ForEach(books) { book in
                                 if(bookSearch == "" || (book.title!.lowercased().contains(bookSearch.lowercased()) || book.author!.lowercased().contains(bookSearch.lowercased()))){
-                                    NavigationLink {
-                                        ShowBookView(book: book, isPresented: $showViewBook, selectedBookShelf: book.bookShelf!)
-                                    } label: {
-                                        VStack {
-                                            HStack {
-                                                Spacer()
-                                                Text(book.title!).foregroundColor(book.bookShelf?.color)
-                                            }
-                                            HStack {
-                                                Spacer()
-                                                Text(book.author!).fontWeight(.light).italic()
-                                            }
-                                        }
-                                    }
+                                    BookListItem(book: book, showViewBook: $showViewBook)
                                 }
                             }
                             .onDelete(perform: deleteItems)

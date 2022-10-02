@@ -22,6 +22,7 @@
 		B5ADD66428C660B8002D6429 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADD66328C660B8002D6429 /* Persistence.swift */; };
 		B5ADD66F28C665E0002D6429 /* Book_Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5ADD66D28C665E0002D6429 /* Book_Model.xcdatamodeld */; };
 		B5ADD69228C6BD14002D6429 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADD69128C6BD14002D6429 /* AddBookView.swift */; };
+		B5CE33BE28E9C8CC00B2299F /* BookListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE33BD28E9C8CC00B2299F /* BookListItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +42,8 @@
 		B5ADD66128C660B8002D6429 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B5ADD66328C660B8002D6429 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Persistence.swift; path = "Book Nook/Persistence.swift"; sourceTree = SOURCE_ROOT; };
 		B5ADD66E28C665E0002D6429 /* Book_Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Book_Model.xcdatamodel; sourceTree = "<group>"; };
-		B5ADD69128C6BD14002D6429 /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddBookView.swift; path = "Book Nook/views/AddBookView.swift"; sourceTree = SOURCE_ROOT; };
+		B5ADD69128C6BD14002D6429 /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddBookView.swift; path = "Book Nook/views/bookViews/AddBookView.swift"; sourceTree = SOURCE_ROOT; };
+		B5CE33BD28E9C8CC00B2299F /* BookListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,12 +107,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		B5CE33BC28E9C88C00B2299F /* bookViews */ = {
+			isa = PBXGroup;
+			children = (
+				B5370ED628C8EBBA001566FF /* ShowBookView.swift */,
+				B5ADD69128C6BD14002D6429 /* AddBookView.swift */,
+				B5CE33BD28E9C8CC00B2299F /* BookListItem.swift */,
+			);
+			path = bookViews;
+			sourceTree = "<group>";
+		};
 		B5ED09F928CA225D005A6455 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				B5CE33BC28E9C88C00B2299F /* bookViews */,
 				B5ADD65C28C660B6002D6429 /* ContentView.swift */,
-				B5370ED628C8EBBA001566FF /* ShowBookView.swift */,
-				B5ADD69128C6BD14002D6429 /* AddBookView.swift */,
 				B53CC72A28CCD6CB00F3CBE5 /* AddShelfView.swift */,
 				B56CBF9628CE1C5D00F24D86 /* EditShelfView.swift */,
 				B551212028E5D0E90022CC6C /* BookShelfListView.swift */,
@@ -195,6 +206,7 @@
 				B5ADD65D28C660B6002D6429 /* ContentView.swift in Sources */,
 				B53CC72B28CCD6CB00F3CBE5 /* AddShelfView.swift in Sources */,
 				B551212128E5D0E90022CC6C /* BookShelfListView.swift in Sources */,
+				B5CE33BE28E9C8CC00B2299F /* BookListItem.swift in Sources */,
 				B53CC73428CCE71200F3CBE5 /* BookShelf+CoreDataClass.swift in Sources */,
 				B5370ED728C8EBBA001566FF /* ShowBookView.swift in Sources */,
 				B5ADD66F28C665E0002D6429 /* Book_Model.xcdatamodeld in Sources */,
