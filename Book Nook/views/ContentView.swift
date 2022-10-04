@@ -73,6 +73,11 @@ struct ContentView: View {
                                     Text(bookShelf.name!)
                                     Spacer()
                                     Button(action: {
+                                        sendShelf(shelf: bookShelf)
+                                    }){
+                                        Label("", systemImage: "square.and.arrow.up")
+                                    }
+                                    Button(action: {
                                         pickRandom(shelf: bookShelf)
                                     }){
                                         Label("", systemImage: "arrow.triangle.2.circlepath")
@@ -170,6 +175,10 @@ struct ContentView: View {
                 Label("Settings", systemImage: "gear")
             }.tag(3)
         }
+    }
+    
+    private func sendShelf(shelf: BookShelf){
+        print(shelf)
     }
     
     private func pickRandom(shelf: BookShelf){

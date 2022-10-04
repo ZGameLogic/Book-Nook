@@ -44,6 +44,7 @@ public struct AddBookView: View {
                     Text("Title:")
                     TextField("Enter Title", text: $inputTitle)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .textInputAutocapitalization(.words)
                         .focused($focusedField, equals: .field)
                         .onAppear {
                             self.focusedField = .field
@@ -54,6 +55,7 @@ public struct AddBookView: View {
                     Text("Author:")
                     TextField("Enter Author", text: $inputAuthor)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .textInputAutocapitalization(.words)
                 }.frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                 HStack {
                     Text("Book shelf: ")
